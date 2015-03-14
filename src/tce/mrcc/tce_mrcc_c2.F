@@ -106,8 +106,8 @@ c     2abs(dbl_mb(k_sqc+(irefnew-1)*nref+mkroot-1)),
 c     3abs(dbl_mb(k_sqc+(iref-1)*nref+mkroot-1))
 
 
-      call ga_zero(d_c2tmp)
-      call ga_zero(d_t1c)
+c      call ga_zero(d_c2tmp)
+c      call ga_zero(d_t1c)
 
         itcpu = - util_cpusec()
         itwall = - util_wallsec()

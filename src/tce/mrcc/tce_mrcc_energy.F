@@ -164,6 +164,8 @@ ckbn      double precision pt3_off2m(maxref*maxref)
       integer itype,idim1, idim2(4)
       integer tg_heff, ngheff, dg_heff
       integer sub_test
+      double precision ddotfile
+      external ddotfile
 
 c      logical lusesamefock
 c (t)
@@ -2817,11 +2819,13 @@ c             DDOT conv.
           ddotr1 = 0.0d0
           ddotr2 = 0.0d0
          do iref=1,nref
-          ddotr1 = ddotr1 + ga_ddot(d_r1m(iref),d_r1m(iref)) *
+          ddotr1 = ddotr1 + ddotfile(d_r1m(iref),d_r1m(iref),
+     1             size_r1m(iref)) *
      2             dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)*
      3             dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)
 
-          ddotr2 = ddotr2 + ga_ddot(d_r2m(iref),d_r2m(iref)) *
+          ddotr2 = ddotr2 + ddotfile(d_r2m(iref),d_r2m(iref),
+     1             size_r2m(iref)) *
      2             dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)*
      3             dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)
 

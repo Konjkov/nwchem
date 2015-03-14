@@ -32,8 +32,8 @@ c
       logical noloadbalance
       integer iref
 
-      if (ioalg.ne.2)
-     1  call errquit('unable to dax non-GA file',0,UNKNOWN_ERR)
+c      if (ioalg.ne.2)
+c     1  call errquit('unable to dax non-GA file',0,UNKNOWN_ERR)
 
       nodezero = (ga_nodeid().eq.0)
 

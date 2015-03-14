@@ -76,7 +76,7 @@ c     1dbl_mb(k_heff+iref-1+(irefnew-1)*nref),
 c     2dbl_mb(k_sqc+(irefnew-1)*nref+mkroot-1)
 
 
-      call ga_zero(d_t1c)
+c      call ga_zero(d_t1c)
        if(lusesub) then
          call ga_pgroup_sync(mypgid)
        else

@@ -239,30 +239,30 @@ c
         do i=1,diis
 
          if(i.gt.1) then
-          call ga_add(1.0d0,t1_diism(i,iref),-1.0d0,t1_diism(i-1,iref),
-     1 r1_diism(i-1,iref))
+          call daxfile(2,(/1.0d0,-1.0d0/),(/t1_diism(i,iref),
+     1 t1_diism(i-1,iref)/),r1_diism(i-1,iref),size_t1m(iref))
          endif
 
          if(i.gt.1) then
-          call ga_add(1.0d0,t2_diism(i,iref),-1.0d0,t2_diism(i-1,iref),
-     1 r2_diism(i-1,iref))
+          call daxfile(2,(/1.0d0,-1.0d0/),(/t2_diism(i,iref),
+     1 t2_diism(i-1,iref)/),r2_diism(i-1,iref),size_t2m(iref))
          endif
          
          if(t3) then
          if(i.gt.1) then
-          call ga_add(1.0d0,t3_diism(i,iref),-1.0d0,t3_diism(i-1,iref),
-     1 r3_diism(i-1,iref))
+          call daxfile(2,(/1.0d0,-1.0d0/),(/t3_diism(i,iref),
+     1 t3_diism(i-1,iref)/),r3_diism(i-1,iref),size_t3m(iref))
          endif
          endif
 
          if(i.eq.1) then
-          call ga_add(1.0d0,d_t1m(iref),-1.0d0,t1_diism(diis,iref),
-     1 r1_diism(diis,iref))
-          call ga_add(1.0d0,d_t2m(iref),-1.0d0,t2_diism(diis,iref),
-     1 r2_diism(diis,iref))
+          call daxfile(2,(/1.0d0,-1.0d0/),(/d_t1m(iref),
+     1 t1_diism(diis,iref)/),r1_diism(diis,iref),size_t1m(iref))
+          call daxfile(2,(/1.0d0,-1.0d0/),(/d_t2m(iref),
+     1 t2_diism(diis,iref)/),r2_diism(diis,iref),size_t2m(iref))
          if(t3) then
-          call ga_add(1.0d0,d_t3m(iref),-1.0d0,t3_diism(diis,iref),
-     1 r3_diism(diis,iref))
+          call daxfile(2,(/1.0d0,-1.0d0/),(/d_t3m(iref),
+     1 t3_diism(diis,iref)/),r3_diism(diis,iref),size_t3m(iref))
          endif
          endif
 
@@ -294,22 +294,26 @@ c     1 dbl_mb(k_sqc+(iref-1)*nref+mkroot-1),iref
 
 c      if(nodezero .and. (iter .lt. 15)) write(*,*) "I have no dcmu"
             if (t1) a(i,j) = a(i,j)
-     1      + ga_ddot(r1_diism(i,iref),r1_diism(j,iref)) !*
+     1      + ddotfile(r1_diism(i,iref),r1_diism(j,iref),
+     2                 size_t1m(iref)) !*
 c     2 dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)*
 c     3 dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)
 
             if (t2) a(i,j) = a(i,j)
-     1      + ga_ddot(r2_diism(i,iref),r2_diism(j,iref)) !*
+     1      + ddotfile(r2_diism(i,iref),r2_diism(j,iref),
+     2                 size_t2m(iref)) !*
 c     2 dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)*
 c     3 dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)
 
             if (t3) a(i,j) = a(i,j)
-     1      + ga_ddot(r3_diism(i,iref),r3_diism(j,iref)) !*
+     1      + ddotfile(r3_diism(i,iref),r3_diism(j,iref),
+     2                 size_t3m(iref)) !*
 c     2 dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)*
 c     3 dbl_mb(k_sqc+(iref-1)*nref+mkroot-1)
 
             if (t4) a(i,j) = a(i,j)
-     1      + ga_ddot(r4_diism(i,iref),r4_diism(j,iref))
+     1      + ddotfile(r4_diism(i,iref),r4_diism(j,iref),
+     2                 size_t4m(iref))
 
             a(j,i) = a(i,j)
 
